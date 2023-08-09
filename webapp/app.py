@@ -61,11 +61,14 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR])
+    imageurl = "https://clo835group10bucket.s3.amazonaws.com/Audi.jpg";
+    s3_url = "s3://clo835group10bucket/Audi.jpg"
+    return render_template('addemp.html', imageurl=imageurl)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR])
+    imageurl = "https://clo835group10bucket.s3.amazonaws.com/Audi.jpg";
+    return render_template('about.html', imageurl=imageurl)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -89,11 +92,11 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR])
+    return render_template('addempoutput.html', name=emp_name, imageurl=imageurl)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR])
+    return render_template("getemp.html",imageurl=imageurl)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -122,7 +125,7 @@ def FetchData():
         cursor.close()
 
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], imageurl=imageurl)
 
 if __name__ == '__main__':
     
@@ -147,4 +150,4 @@ if __name__ == '__main__':
         print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
         exit(1)
 
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    app.run(host='0.0.0.0',port=81,debug=True)
