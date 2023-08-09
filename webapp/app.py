@@ -3,6 +3,9 @@ from pymysql import connections
 import os
 import random
 import argparse
+import boto3
+
+
 
 
 app = Flask(__name__)
@@ -12,7 +15,16 @@ DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
-DBPORT = int(os.environ.get("DBPORT"))
+DBPORT = 3306
+
+
+# Creating connection to the S3 bucket
+s3 = boto3.resource('s3')
+bucket_name = 'clo835group10bucket'
+bucket = s3.Bucket(bucket_name)
+image_key = 'Audi.jpg'
+s3_url = f'https://{bucket_name}.s3.amazonaws.com/{image_key}'
+imageurl = f'https://{bucket_name}.s3.amazonaws.com/{image_key}'
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
@@ -25,6 +37,8 @@ db_conn = connections.Connection(
 )
 output = {}
 table = 'employee';
+
+imageurl = "https://clo835group10bucket.s3.amazonaws.com/Audi.jpg"
 
 # Define the supported color codes
 color_codes = {
