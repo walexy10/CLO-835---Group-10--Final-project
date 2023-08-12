@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-g10
+  labels: 
+    app: webpp-g10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-g10
+  template:
+    metadata:
+      labels:
+        app: webapp-g10
+    spec:
+      serviceAccountName: clo835-g10
+      containers:
+        - name: webapp-g10
+          image: 996943551135.dkr.ecr.us-east-1.amazonaws.com/mywebapp:v1.0
+          ports: 
+            - containerPort: 81
+              protocol: TCP
+          env:
+            - name: DBHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DBHOST
+            - name: DBPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DBPORT
+            - name: DBUSER
+              value: root
+            - name: DBPWD 
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: password
+            - name: GROUP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: Group
+            - name: image
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: image
+            - name: Bucket_link
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: Bucket_link
