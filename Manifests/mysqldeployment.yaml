@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-g10
+  labels:
+    app: mysql-g10
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: mysql-g10
+  template:
+    metadata:
+      labels:
+        app: mysql-g10
+    spec:
+      containers:
+      - image: 996943551135.dkr.ecr.us-east-1.amazonaws.com/mysql:v1.0
+        name: mysql-g10
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: clo835
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        volumeMounts:
+        - name: mysql-database
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-database
+        persistentVolumeClaim: 
+          claimName: ebs-pvc
