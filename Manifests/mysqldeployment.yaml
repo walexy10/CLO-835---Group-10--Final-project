@@ -15,7 +15,7 @@ spec:
         app: mysql-g10
     spec:
       containers:
-      - image: 996943551135.dkr.ecr.us-east-1.amazonaws.com/mysql:v1.0
+      - image: 
         name: mysql-g10
         env:
         - name: MYSQL_ROOT_PASSWORD
