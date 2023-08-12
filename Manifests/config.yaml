@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  image_url: "/image_url"
+  app-name: G10APP
+  aws-region: us-east-1
+  Group: G10
+  name: Group10
+  DBHOST: mysql-svc-g10
+  DBPORT: "3306"
+  Bucket_link: "s3://clo835group10bucket/Audi.jpg"
+  image: |
+    image_link: "https://clo835group10bucket.s3.amazonaws.com/Audi.jpg"
