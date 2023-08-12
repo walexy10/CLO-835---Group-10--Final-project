@@ -35,7 +35,7 @@ export DBUSER=root
 export DATABASE=employees
 export DBPWD=pw
 export APP_COLOR=blue
-export GROUPNAME='group5jaas'
-export objectName='jello.jpg'
+export GROUPNAME='group10'
+export objectName=''
 Run the application, make sure it is visible in the browser
 docker run -p 81:81  -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e  DBUSER=$DBUSER -e DBPWD=$DBPWD -e GROUPNAME=$GROUPNAME -e objectName=$objectName  app
