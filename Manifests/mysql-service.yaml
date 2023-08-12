@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc-g10
+  labels:
+    app: mysql-g10
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql-g10
+  ports:
+    - name: mysql-g10
+      port: 3306
+      targetPort: 3306
+ 
