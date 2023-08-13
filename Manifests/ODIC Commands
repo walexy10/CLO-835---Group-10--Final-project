@@ -1,0 +1,2 @@
+s3 eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=clo835 --approve
+eksctl create iamserviceaccount --name clo835 --namespace final --cluster clo835 --attach-policy-arn arn:aws:iam::547747823946:policy/S3-IAMpolicy --approve    #IAM policy i have created it manually in AWS console
